@@ -5,6 +5,9 @@ import config from "./config";
 import usersRoute from './routes/users.routes';
 import booksRoute from './routes/books.routes';
 import exchangeOffersRoute from './routes/exchangeOffers.routes';
+import bookConditionRoute from './routes/bookCondition.routes';
+import bookGenreRoute from './routes/bookGenre.routes';
+import bookStatusRoute from './routes/bookStatus.routes';
 
 
 
@@ -24,6 +27,9 @@ app.use(express.urlencoded({extended: false}))
 app.use(usersRoute)
 app.use(booksRoute)
 app.use(exchangeOffersRoute)
+app.use(bookConditionRoute)
+app.use(bookGenreRoute)
+app.use(bookStatusRoute)
 
 
 export default app

@@ -386,7 +386,7 @@ go
 --Empieza Apartado ExchangeOffers--
 
 
-CREATE PROCEDURE GetAllBookStatuses 
+CREATE PROCEDURE GetAllBookStatus
 AS
 BEGIN
     SELECT * FROM BookStatus;
@@ -406,6 +406,14 @@ BEGIN
     SELECT * FROM BookGenre;
 END;
 GO
+
+CREATE PROCEDURE GetAllOfferStatus
+AS
+BEGIN
+    SELECT * FROM OfferStatus;
+END;
+GO
+
 
 
 EXECUTE GetAllBookStatuses
