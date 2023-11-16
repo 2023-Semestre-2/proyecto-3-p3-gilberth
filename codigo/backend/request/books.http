@@ -1,0 +1,42 @@
+@baseUrl = http://localhost:3000/books
+
+GET {{baseUrl}}/1
+
+###
+GET {{baseUrl}}
+
+###
+POST {{baseUrl}}
+Content-Type:  application/json
+
+{
+  "UserID": 4,
+  "Title": "Los Secretos del Universo",
+  "Description": "Un fascinante viaje a través de las maravillas del cosmos.",
+  "Author": "Sofía Rodríguez",
+  "PublicationYear": 2022,
+  "GenreID": 6,
+  "Publisher": "Estrellas Editorial",
+  "ISBN": "978-3-16-148415-5",
+  "StatusID": 1,
+  "ConditionID": 1
+}
+
+
+###
+POST {{baseUrl}}
+Content-Type:  application/json
+
+{
+  "BookID": 4,
+  "UserID": 4,
+  "Title": "Los Secretos del Universo - Edición Revisada",
+  "Description": "Una edición revisada y ampliada del fascinante viaje a través de las maravillas del cosmos.",
+  "Author": "Sofía Rodríguez",
+  "PublicationYear": 2023,
+  "GenreID": 6,
+  "Publisher": "Estrellas Editorial",
+  "ISBN": "978-3-16-148415-5",
+  "StatusID": 2,
+  "ConditionID": 1
+}
