@@ -1,0 +1,52 @@
+/* Footer.css */
+.footer {
+    background-color: #4a7c59; /* Color de fondo verde oscuro */
+    color: #fff;
+    padding: 25px 15px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.5;
+  }
+  
+  .footer h3 {
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .footer p {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  .footer div {
+    margin-top: 15px;
+  }
+  
+  .footer strong {
+    font-weight: bold;
+  }
+  
+  .footer a {
+    color: #fde8d7; /* Color de enlace coral claro */
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .footer a:hover {
+    color: #dbb28d; /* Color de enlace coral oscuro al pasar el mouse */
+    text-decoration: underline;
+  }
+  
+  .footer .contact-info {
+    margin-top: 20px;
+  }
+  
+  .footer .copyright {
+    font-size: 14px;
+    margin-top: 25px;
+    color: #dcdcdc; /* Color gris claro para el texto de copyright */
+  }
+  
+  /* Removiendo la regla de media query para mantener el texto centrado */
+  

@@ -1,0 +1,90 @@
+/* Estilos generales para la barra de navegación */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: #333;
+}
+
+/* Estilo para la marca/logo del sitio */
+.brand {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.brand span {
+    color: #f7f7f7;
+    cursor: pointer;
+}
+
+/* Estilos para los enlaces de navegación */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    cursor: pointer;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #f7f7f7;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover, .nav-links .active {
+    color: #ff9800;
+}
+
+/* Estilo para los botones y elementos de autenticación */
+.auth-links {
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos */
+    gap: 10px;
+}
+
+.btn, .auth-links span {
+    padding: 10px 15px;
+    background-color: #ff9800;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #e68900;
+}
+
+.auth-links span {
+    background-color: transparent; /* El span no necesita fondo */
+    cursor: default; /* El span no es un botón, así que cambia el cursor */
+}
+
+/* Estilos para responsividad */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+    }
+
+    .brand {
+        margin-bottom: 15px;
+    }
+
+    .nav-links, .auth-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-links li, .auth-links, .auth-links span, .btn {
+        width: 100%; /* Hace que los elementos ocupen todo el ancho disponible */
+    }
+
+    .btn {
+        width: 100%; /* Hace que los botones ocupen todo el ancho disponible */
+    }
+}

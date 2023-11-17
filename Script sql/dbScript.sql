@@ -21,6 +21,8 @@ CREATE TABLE Users (
 );
 go
 
+select * from Users
+
 -- Verificar y crear la tabla BookStatus si no existe
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'BookStatus')
 CREATE TABLE BookStatus (
@@ -65,7 +67,8 @@ CREATE TABLE Books (
     GenreID INT FOREIGN KEY REFERENCES BookGenre(GenreID),
     Publisher VARCHAR(255),
     StatusID INT FOREIGN KEY REFERENCES BookStatus(StatusID) DEFAULT 1,
-    ConditionID INT FOREIGN KEY REFERENCES BookCondition(ConditionID)
+    ConditionID INT FOREIGN KEY REFERENCES BookCondition(ConditionID),
+	UrlImage VARCHAR(400)
 );
 go
 
@@ -294,22 +297,37 @@ go
 CREATE PROCEDURE GetAllBooks
 AS
 BEGIN
-    SELECT *
-    FROM Books
+    SELECT 
+        B.BookID,
+        B.Title,
+        B.Description,
+        B.Author,
+        B.PublicationYear,
+        BG.Description AS Genre,
+        B.Publisher,
+        BS.Description AS BookStatus,
+        BC.Description AS BookCondition,
+		B.UserID,
+        B.UrlImage
+    FROM Books B
+    INNER JOIN BookGenre BG ON B.GenreID = BG.GenreID
+    INNER JOIN BookStatus BS ON B.StatusID = BS.StatusID
+    INNER JOIN BookCondition BC ON B.ConditionID = BC.ConditionID;
 END;
-go
+GO
+
+
+execute GetAllBooks
 
 
 
-
-
-INSERT INTO Books (UserID, Title, Description, Author, PublicationYear, GenreID, Publisher, StatusID, ConditionID) 
+INSERT INTO Books (UserID, Title, Description, Author, PublicationYear, GenreID, Publisher, StatusID, ConditionID,UrlImage) 
 VALUES 
-(1, 'El Misterio de la Casa Verde', 'Una emocionante novela de misterio y aventura.', 'Elena Moreno', 2018, 2, 'Editorial Luna', 1, 1),
-(1, 'Aventuras en el Mar', 'Una historia apasionante sobre piratas y tesoros.', 'Carlos Ruiz', 2019, 3, 'Mar Editores', 1, 2),
-(2, 'El Jardín Secreto', 'Un relato sobre el descubrimiento y la amistad.', 'María Ortega', 2015, 1, 'Flor Editorial', 1, 3),
-(2, 'Historias de Otro Mundo', 'Cuentos fantásticos de seres y lugares mágicos.', 'Julio Verne', 2020, 5, 'Aventura Cósmica', 2, 1),
-(3, 'Ciencia y Tecnología', 'Una exploración de los avances científicos más recientes.', 'Ana Martínez', 2021, 4, 'Tech Mundo', 1, 2);
+(1, 'El Misterio de la Casa Verde', 'Una emocionante novela de misterio y aventura.', 'Elena Moreno', 2018, 2, 'Editorial Luna', 1, 1,'https://i.pinimg.com/736x/a1/da/f0/a1daf0dca227c2011e3a554c4d29baa2.jpg'),
+(1, 'Aventuras en el Mar', 'Una historia apasionante sobre piratas y tesoros.', 'Carlos Ruiz', 2019, 3, 'Mar Editores', 1, 2,'https://i.pinimg.com/736x/a1/da/f0/a1daf0dca227c2011e3a554c4d29baa2.jpg'),
+(2, 'El Jardín Secreto', 'Un relato sobre el descubrimiento y la amistad.', 'María Ortega', 2015, 1, 'Flor Editorial', 1, 3,'https://cdn.domestika.org/c_limit,dpr_auto,f_auto,q_auto,w_820/v1501411756/content-items/002/029/574/01.top-10-libros-ilustrados-original.jpg'),
+(2, 'Historias de Otro Mundo', 'Cuentos fantásticos de seres y lugares mágicos.', 'Julio Verne', 2020, 5, 'Aventura Cósmica', 2, 1,'https://i.pinimg.com/736x/a1/da/f0/a1daf0dca227c2011e3a554c4d29baa2.jpg'),
+(3, 'Ciencia y Tecnología', 'Una exploración de los avances científicos más recientes.', 'Ana Martínez', 2021, 4, 'Tech Mundo', 1, 2,'https://cdn.domestika.org/c_limit,dpr_auto,f_auto,q_auto,w_820/v1501411756/content-items/002/029/574/01.top-10-libros-ilustrados-original.jpg');
 go
 
 --Termina Apartado Books --
@@ -416,12 +434,3 @@ GO
 
 
 
-EXECUTE GetAllBookStatuses
-GO
-EXECUTE GetAllBookConditions
-GO
-EXECUTE GetAllBookGenres
-GO
-
-EXECUTE GetALLUser
-GO
